@@ -3,15 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HTML Page Builder</title>
+<title>HTML Page Builder with Code Playground</title>
 <style>
     body {
         font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: 100vh;
+        margin: 0;
     }
     .container {
-        max-width: 800px;
-        margin: 0 auto;
+        width: 40%;
         padding: 20px;
+    }
+    .playground {
+        width: 55%;
+        padding: 20px;
+        border-left: 1px solid #ccc;
     }
     .toolbar {
         margin-bottom: 20px;
@@ -19,12 +28,14 @@
     .preview {
         border: 1px solid #ccc;
         padding: 20px;
+        margin-bottom: 20px;
     }
 </style>
 </head>
 <body>
 
 <div class="container">
+    <h2>HTML Page Builder</h2>
     <div class="toolbar">
         <button onclick="addElement('heading')">Add Heading</button>
         <button onclick="addElement('paragraph')">Add Paragraph</button>
@@ -34,6 +45,12 @@
     <div class="preview" id="preview">
         <!-- Preview area where elements will be added -->
     </div>
+</div>
+
+<div class="playground">
+    <h2>Code Playground</h2>
+    <textarea id="code" cols="50" rows="10"></textarea>
+    <button onclick="updateCode()">Update Code</button>
 </div>
 
 <script>
@@ -54,6 +71,14 @@
         }
         
         preview.appendChild(element);
+        updateCode();
+    }
+    
+    function updateCode() {
+        var preview = document.getElementById('preview');
+        var code = document.getElementById('code');
+        
+        code.value = preview.innerHTML;
     }
 </script>
 
