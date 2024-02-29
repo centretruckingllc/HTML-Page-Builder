@@ -97,6 +97,10 @@
             element = document.createElement('div');
             element.textContent = 'New Div';
             codeSnippet = "<div>New Div</div>";
+        } else if (type === 'button') {
+            element = document.createElement('button');
+            element.textContent = 'Button';
+            codeSnippet = "<button>Button</button>";
         }
         
         preview.appendChild(element);
