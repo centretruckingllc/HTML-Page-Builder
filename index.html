@@ -7,35 +7,29 @@
 <style>
     body {
         font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        height: 100vh;
-        margin: 0;
     }
     .container {
-        width: 40%;
-        padding: 20px;
-    }
-    .playground {
-        width: 55%;
-        padding: 20px;
-        border-left: 1px solid #ccc;
+        display: flex;
     }
     .toolbar {
-        margin-bottom: 20px;
+        flex: 1;
+        padding: 20px;
+        border-right: 1px solid #ccc;
     }
     .preview {
-        border: 1px solid #ccc;
+        flex: 2;
         padding: 20px;
-        margin-bottom: 20px;
+    }
+    .code-editor {
+        flex: 1;
+        padding: 20px;
+        border-left: 1px solid #ccc;
     }
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>HTML Page Builder</h2>
     <div class="toolbar">
         <button onclick="addElement('heading')">Add Heading</button>
         <button onclick="addElement('paragraph')">Add Paragraph</button>
@@ -45,40 +39,36 @@
     <div class="preview" id="preview">
         <!-- Preview area where elements will be added -->
     </div>
-</div>
-
-<div class="playground">
-    <h2>Code Playground</h2>
-    <textarea id="code" cols="50" rows="10"></textarea>
-    <button onclick="updateCode()">Update Code</button>
+    
+    <div class="code-editor">
+        <textarea id="code" rows="10" style="width: 100%;" readonly></textarea>
+    </div>
 </div>
 
 <script>
     function addElement(type) {
         var preview = document.getElementById('preview');
+        var codeTextArea = document.getElementById('code');
         var element;
+        var codeSnippet;
         
         if (type === 'heading') {
             element = document.createElement('h2');
             element.textContent = 'New Heading';
+            codeSnippet = "<h2>New Heading</h2>";
         } else if (type === 'paragraph') {
             element = document.createElement('p');
             element.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+            codeSnippet = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>";
         } else if (type === 'image') {
             element = document.createElement('img');
             element.src = 'https://via.placeholder.com/150';
             element.alt = 'Placeholder Image';
+            codeSnippet = "<img src='https://via.placeholder.com/150' alt='Placeholder Image'>";
         }
         
         preview.appendChild(element);
-        updateCode();
-    }
-    
-    function updateCode() {
-        var preview = document.getElementById('preview');
-        var code = document.getElementById('code');
-        
-        code.value = preview.innerHTML;
+        codeTextArea.value += codeSnippet + "\n";
     }
 </script>
 
