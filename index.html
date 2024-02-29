@@ -37,7 +37,7 @@
         <button onclick="addElement('list')">Add List</button>
         <button onclick="addElement('link')">Add Link</button>
         <button onclick="addElement('div')">Add Div</button>
-        <button onclick="addElement('button')">Add Button</button>
+        <button onclick="addElement('button', prompt('Enter URL'))">Add Button</button>
         <button onclick="copyHTMLCode()">Copy HTML Code</button>
     </div>
     
@@ -62,7 +62,7 @@
         preview.innerHTML = codeTextArea.value;
     });
 
-    function addElement(type) {
+    function addElement(type, url = '') {
         var preview = document.getElementById('preview');
         var element;
         var codeSnippet;
@@ -101,7 +101,10 @@
         } else if (type === 'button') {
             element = document.createElement('button');
             element.textContent = 'Button';
-            codeSnippet = "<button>Button</button>";
+            element.addEventListener('click', function() {
+                window.location.href = url;
+            });
+            codeSnippet = "<button onclick=\"window.location.href='" + url + "'\">Button</button>";
         }
         
         preview.appendChild(element);
