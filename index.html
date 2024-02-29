@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HTML Page Builder</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    .toolbar {
+        margin-bottom: 20px;
+    }
+    .preview {
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="toolbar">
+        <button onclick="addElement('heading')">Add Heading</button>
+        <button onclick="addElement('paragraph')">Add Paragraph</button>
+        <button onclick="addElement('image')">Add Image</button>
+    </div>
+    
+    <div class="preview" id="preview">
+        <!-- Preview area where elements will be added -->
+    </div>
+</div>
+
+<script>
+    function addElement(type) {
+        var preview = document.getElementById('preview');
+        var element;
+        
+        if (type === 'heading') {
+            element = document.createElement('h2');
+            element.textContent = 'New Heading';
+        } else if (type === 'paragraph') {
+            element = document.createElement('p');
+            element.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+        } else if (type === 'image') {
+            element = document.createElement('img');
+            element.src = 'https://via.placeholder.com/150';
+            element.alt = 'Placeholder Image';
+        }
+        
+        preview.appendChild(element);
+    }
+</script>
+
+</body>
+</html>
