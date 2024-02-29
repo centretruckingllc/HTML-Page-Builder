@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HTML Page Builder with Code Playground</title>
+<title>HTML Page Builder with Editable Code Playground</title>
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -41,14 +41,24 @@
     </div>
     
     <div class="code-editor">
-        <textarea id="code" rows="10" style="width: 100%;" readonly></textarea>
+        <textarea id="code" rows="10" style="width: 100%;"></textarea>
     </div>
 </div>
 
 <script>
+    // Initialize code editor content
+    var codeTextArea = document.getElementById('code');
+    var initialCode = '';
+    codeTextArea.value = initialCode;
+
+    // Update preview when code editor content changes
+    codeTextArea.addEventListener('input', function() {
+        var preview = document.getElementById('preview');
+        preview.innerHTML = codeTextArea.value;
+    });
+
     function addElement(type) {
         var preview = document.getElementById('preview');
-        var codeTextArea = document.getElementById('code');
         var element;
         var codeSnippet;
         
