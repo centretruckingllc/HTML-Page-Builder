@@ -34,6 +34,10 @@
         <button onclick="addElement('heading')">Add Heading</button>
         <button onclick="addElement('paragraph')">Add Paragraph</button>
         <button onclick="addElement('image')">Add Image</button>
+        <button onclick="addElement('list')">Add List</button>
+        <button onclick="addElement('link')">Add Link</button>
+        <button onclick="addElement('div')">Add Div</button>
+        <button onclick="addElement('button')">Add Button</button>
     </div>
     
     <div class="preview" id="preview">
@@ -75,6 +79,24 @@
             element.src = 'https://via.placeholder.com/150';
             element.alt = 'Placeholder Image';
             codeSnippet = "<img src='https://via.placeholder.com/150' alt='Placeholder Image'>";
+        } else if (type === 'list') {
+            element = document.createElement('ul');
+            var listItem1 = document.createElement('li');
+            listItem1.textContent = 'List item 1';
+            var listItem2 = document.createElement('li');
+            listItem2.textContent = 'List item 2';
+            element.appendChild(listItem1);
+            element.appendChild(listItem2);
+            codeSnippet = "<ul>\n  <li>List item 1</li>\n  <li>List item 2</li>\n</ul>";
+        } else if (type === 'link') {
+            element = document.createElement('a');
+            element.textContent = 'Link';
+            element.href = '#';
+            codeSnippet = "<a href='#'>Link</a>";
+        } else if (type === 'div') {
+            element = document.createElement('div');
+            element.textContent = 'New Div';
+            codeSnippet = "<div>New Div</div>";
         }
         
         preview.appendChild(element);
